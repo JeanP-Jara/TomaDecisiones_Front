@@ -34,10 +34,11 @@ export class HomeComponent implements OnInit {
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
   ruc = "20388021196";
+  iddeuda = 0;
 
   tipodeuda = [
     {id: 1, name: 'Deudor'},
-    {id: 1, name: 'No Deudor'}
+    {id: 2, name: 'No Deudor'}
   ]
 
   constructor(
@@ -50,8 +51,10 @@ export class HomeComponent implements OnInit {
   }
 
   get(){
-
-    this.homeServices.get({}).subscribe(
+    let parameter = {
+      iddeuda: this.iddeuda
+    }
+    this.homeServices.get(parameter).subscribe(
       result =>{
         try {
           if (result.estado) {
@@ -95,8 +98,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  select(e: any){
-
+  select(e: number){
+    this.iddeuda = e;
+    this.get();    
   }
 
   getUser(){
