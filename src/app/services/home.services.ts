@@ -11,8 +11,13 @@ export class homeServices{
         this.url =  environment.url;
     }
 
-    get(parameter: any): Observable<any> {
+    getUser(parameter: any): Observable<any> {
         console.log(parameter)
         return this._http.post(this.url + 'info/consulta', parameter);
+    }
+
+    get(parameter: any): Observable<any> {
+        console.log(parameter)
+        return this._http.post(this.url + 'info/get', parameter);
     }
 }
